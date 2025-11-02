@@ -1,0 +1,13 @@
+__turbopack_load_page_chunks__("/booking", [
+  "static/chunks/f2419_next_dist_compiled_next-devtools_index_6e66b9d6.js",
+  "static/chunks/f2419_next_dist_compiled_a99a0399._.js",
+  "static/chunks/f2419_next_dist_shared_lib_1e80c6a8._.js",
+  "static/chunks/f2419_next_dist_client_db0e1265._.js",
+  "static/chunks/f2419_next_dist_039f61c9._.js",
+  "static/chunks/f2419_next_image_721829ea.js",
+  "static/chunks/f2419_react-dom_f72ed417._.js",
+  "static/chunks/f2419_a31c2de0._.js",
+  "static/chunks/[root-of-the-server]__60f7b039._.js",
+  "static/chunks/alx-listing-app-03_pages_booking_index_tsx_2da965e7._.js",
+  "static/chunks/turbopack-alx-listing-app-03_pages_booking_index_tsx_6d3848d4._.js"
+])
