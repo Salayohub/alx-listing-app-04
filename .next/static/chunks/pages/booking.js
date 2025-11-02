@@ -1,13 +1,13 @@
 __turbopack_load_page_chunks__("/booking", [
-  "static/chunks/f2419_next_dist_compiled_next-devtools_index_6e66b9d6.js",
-  "static/chunks/f2419_next_dist_compiled_a99a0399._.js",
-  "static/chunks/f2419_next_dist_shared_lib_1e80c6a8._.js",
-  "static/chunks/f2419_next_dist_client_db0e1265._.js",
-  "static/chunks/f2419_next_dist_039f61c9._.js",
-  "static/chunks/f2419_next_image_721829ea.js",
-  "static/chunks/f2419_react-dom_f72ed417._.js",
-  "static/chunks/f2419_a31c2de0._.js",
-  "static/chunks/[root-of-the-server]__60f7b039._.js",
-  "static/chunks/alx-listing-app-03_pages_booking_index_tsx_2da965e7._.js",
-  "static/chunks/turbopack-alx-listing-app-03_pages_booking_index_tsx_6d3848d4._.js"
+  "static/chunks/node_modules_next_dist_compiled_next-devtools_index_5277ebc8.js",
+  "static/chunks/node_modules_next_dist_compiled_aa9d047d._.js",
+  "static/chunks/node_modules_next_dist_shared_lib_16fa510a._.js",
+  "static/chunks/node_modules_next_dist_client_bdba867a._.js",
+  "static/chunks/node_modules_next_dist_2e2215b7._.js",
+  "static/chunks/node_modules_next_image_e7eb52cb.js",
+  "static/chunks/node_modules_react-dom_4411d9bd._.js",
+  "static/chunks/node_modules_db346ff0._.js",
+  "static/chunks/[root-of-the-server]__85f12739._.js",
+  "static/chunks/pages_booking_index_tsx_2da965e7._.js",
+  "static/chunks/turbopack-pages_booking_index_tsx_10db7d94._.js"
 ])

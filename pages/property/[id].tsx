@@ -1,46 +1,37 @@
 import { useRouter } from "next/router";
-import { PROPERTYLISTINGSAMPLE } from "@/constants";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import PropertyDetail from "@/components/property/PropertyDetail";
-import BookingSection from "@/components/property/BookingSection";
-import ReviewSection from "@/components/property/ReviewSection";
 
-export default function PropertyPage() {
+export default function PropertyDetailPage() {
   const router = useRouter();
   const { id } = router.query;
+  const [property, setProperty] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Find the property based on the ID from the route
-  const property = PROPERTYLISTINGSAMPLE.find((item) => item.id === id);
+  useEffect(() => {
+    const fetchProperty = async () => {
+      if (!id) return;
+      try {
+        const response = await axios.get(`/api/properties/${id}`);
+        setProperty(response.data);
+      } catch (error) {
+        console.error("Error fetching property details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!property) {
-    return (
-      <div className="text-center py-20">
-        <h2 className="text-2xl font-semibold">Property not found</h2>
-        <p className="text-gray-500 mt-2">Please check the listing and try again.</p>
-      </div>
-    );
+    fetchProperty();
+  }, [id]);
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
-      {/* Property Detail Section */}
-      <PropertyDetail property={property} />
+  if (!property) {
+    return <p>Property not found</p>;
+  }
 
-      {/* Responsive layout using grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10">
-        {/* Left Section: Reviews */}
-        <div className="lg:col-span-2">
-          <ReviewSection reviews={property.reviews || []} />
-        </div>
-
-        {/* Right Section: Booking */}
-        <div className="lg:col-span-1">
-           <BookingSection
-          price={property.price}
-          rating={property.rating}
-          name={property.name}
-        />
-        </div>
-      </div>
-    </div>
-  );
+  return <PropertyDetail property={property} />;
 }

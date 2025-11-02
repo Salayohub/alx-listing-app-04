@@ -76,4 +76,16 @@ type ApiRouteConfig = {
   handler satisfies ApiRouteConfig
 }
 
+// Validate ../../pages/api/properties.ts
+{
+  const handler = {} as typeof import("../../pages/api/properties.js")
+  handler satisfies ApiRouteConfig
+}
+
+// Validate ../../pages/api/properties/[id].ts
+{
+  const handler = {} as typeof import("../../pages/api/properties/[id].js")
+  handler satisfies ApiRouteConfig
+}
+
 

@@ -17,7 +17,11 @@ import {
 const PropertyDetail: React.FC<{ property: PropertyProps }> = ({ property }) => {
   const [activeTab, setActiveTab] = useState("offer");
 
-  // Amenity icon mapping
+  if (!property) {
+    return <p className="text-center text-gray-500">Property not found or loading...</p>;
+  }
+
+  // Amenity icons
   const amenityIcons: Record<string, React.ReactNode> = {
     wifi: <Wifi className="w-5 h-5 text-blue-500" />,
     bed: <BedDouble className="w-5 h-5 text-green-500" />,
@@ -29,43 +33,42 @@ const PropertyDetail: React.FC<{ property: PropertyProps }> = ({ property }) => 
     ac: <Wind className="w-5 h-5 text-cyan-500" />,
   };
 
-  // Include wifi in amenities if not already there
   const updatedAmenities = property.amenities?.includes("wifi")
     ? property.amenities
     : [...(property.amenities || []), "wifi"];
 
   return (
     <div className="container mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
-      {/* ===== Left Content (Property Info) ===== */}
+      {/* ===== Left Section ===== */}
       <div className="lg:col-span-2">
-        {/* Header Section */}
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">{property.name}</h1>
-          <div className="flex items-center gap-3 text-gray-600 mt-2">
-            <span className="flex items-center gap-1 text-yellow-500 font-medium">
-              <Star className="w-4 h-4" /> {property.rating}
-            </span>
-            <span>
-              {property.address.city}, {property.address.country}
-            </span>
-          </div>
+        {/* Header */}
+        <h1 className="text-3xl font-bold text-gray-900">{property.name}</h1>
+        <div className="flex items-center gap-3 text-gray-600 mt-2">
+          <span className="flex items-center gap-1 text-yellow-500 font-medium">
+            <Star className="w-4 h-4" /> {property.rating ?? "N/A"}
+          </span>
+          <span>
+            {property.address?.city}, {property.address?.country}
+          </span>
         </div>
 
         {/* Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-          {property.images?.map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt={`${property.name} image ${index + 1}`}
-              className={`object-cover w-full h-64 rounded-lg ${
-                index === 0 ? "lg:col-span-2 lg:row-span-2 h-full" : ""
-              }`}
-            />
-          ))}
-        </div>
+        {property.images && property.images.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+            {property.images.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`${property.name} image ${index + 1}`}
+                className={`object-cover w-full h-64 rounded-lg ${
+                  index === 0 ? "lg:col-span-2 lg:row-span-2 h-full" : ""
+                }`}
+              />
+            ))}
+          </div>
+        )}
 
-        {/* Tabs Section */}
+        {/* Tabs */}
         <div className="mt-6 border-b border-gray-300">
           <div className="flex gap-6">
             {["offer", "reviews", "host"].map((tab) => (
@@ -93,7 +96,9 @@ const PropertyDetail: React.FC<{ property: PropertyProps }> = ({ property }) => 
           {activeTab === "offer" && (
             <div>
               <h2 className="text-xl font-semibold mb-2">Description</h2>
-              <p className="text-gray-700 leading-relaxed">{property.description}</p>
+              <p className="text-gray-700 leading-relaxed">
+                {property.description || "No description available."}
+              </p>
 
               <div className="mt-6">
                 <h3 className="text-xl font-semibold mb-3">
@@ -126,38 +131,34 @@ const PropertyDetail: React.FC<{ property: PropertyProps }> = ({ property }) => 
             </div>
           )}
 
-          {activeTab === "host" && property.host &&(
+          {activeTab === "host" && property.host && (
             <div>
               <h3 className="text-xl font-semibold mb-2">About the Host</h3>
               <div className="flex items-center gap-4">
-                {property.host.image&&(
-                <img
-                  src={property.host.image}
-                  alt={property.host.name ?? "Host"}
-                  className="w-16 h-16 rounded-full object-cover"
-                />
-                 )}
-
+                {property.host.image && (
+                  <img
+                    src={property.host.image}
+                    alt={property.host.name ?? "Host"}
+                    className="w-16 h-16 rounded-full object-cover"
+                  />
+                )}
                 <div>
-                  {property.host.name &&(
-                  <h4 className="font-semibold text-gray-800">
-                    {property.host.name}
-                  </h4>  
+                  {property.host.name && (
+                    <h4 className="font-semibold text-gray-800">
+                      {property.host.name}
+                    </h4>
                   )}
-
-                  {property.host.description &&(
-                  <p className="text-gray-600">{property.host.description}</p> 
+                  {property.host.description && (
+                    <p className="text-gray-600">{property.host.description}</p>
                   )}
                 </div>
-                  
-                
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* ===== Right Content (Booking Section) ===== */}
+      {/* ===== Right Section (Booking) ===== */}
       <div className="lg:col-span-1">
         <BookingSection
           price={property.price}

@@ -15,6 +15,8 @@ self.__BUILD_MANIFEST = {
     "/_app",
     "/_error",
     "/api/hello",
+    "/api/properties",
+    "/api/properties/[id]",
     "/booking",
     "/property/[id]"
   ]
