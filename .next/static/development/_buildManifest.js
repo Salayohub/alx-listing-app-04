@@ -5,12 +5,6 @@ self.__BUILD_MANIFEST = {
   "/_error": [
     "./static/chunks/pages/_error.js"
   ],
-  "/booking": [
-    "./static/chunks/pages/booking.js"
-  ],
-  "/property/[id]": [
-    "./static/chunks/pages/property/[id].js"
-  ],
   "__rewrites": {
     "afterFiles": [],
     "beforeFiles": [],

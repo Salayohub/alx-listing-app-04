@@ -76,3 +76,11 @@ export interface BookingDetailsProps {
   startDate: string;
   image?: string;
 }
+
+export interface PropertyCardProps {
+  id: number;
+  image: string;
+  name: string;
+  price: number;
+  rating: number;
+}

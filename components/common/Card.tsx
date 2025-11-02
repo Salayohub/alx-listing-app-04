@@ -1,6 +1,8 @@
 import { PropertyCardProps } from "@/interfaces";
 
-export default function PropertyCard({ id,image, name, price, rating }: PropertyCardProps) {
+export default function PropertyCard({ property }: { property: PropertyCardProps }) {
+  const { id, image, name, price, rating } = property;
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
       <img src={image} alt={name} className="w-full h-48 object-cover" />
